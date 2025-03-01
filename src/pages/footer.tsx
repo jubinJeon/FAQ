@@ -5,8 +5,6 @@ const Footer: React.FC = () => {
     return (
       <footer className="footer">
 
-
-
         <div className="inner">
           <div className="information">
             {/* 개인정보 처리방침 & 이용약관 버튼 */}
@@ -16,7 +14,6 @@ const Footer: React.FC = () => {
               </button>
               <button type="button">이용약관</button>
             </span>
-  
             {/* 회사 정보 */}
             <address>
               <span>서울특별시 서초구 헌릉로 12 <em>기아㈜</em></span>
@@ -34,12 +31,10 @@ const Footer: React.FC = () => {
               </span>
             </address>
           </div>
-  
           {/* 저작권 정보 */}
           <p className="copyright">© 2023 KIA CORP. All Rights Reserved.</p>
         </div>
 
-        
       </footer>
     );
   };

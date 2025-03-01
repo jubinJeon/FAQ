@@ -4,9 +4,10 @@ import logoImg from "../styles/logo.svg"    // 로고 이미지
 
 const Header: React.FC = () => {
 
-  // 오픈 이벤트
+  // 메뉴 열고,닫기 변수
   const [isNavOpen, setIsNavOpen] = useState(false);
 
+  // 클릭 이벤트
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -42,9 +43,9 @@ const Header: React.FC = () => {
           </ul>
         </nav>
 
-        {/* 메뉴 버튼 */}
+        {/* 오른쪽 = 메뉴 버튼 */}
         <span className="util">
-          <button type="button" className="nav-toggle" onClick={handleNavToggle}>
+          <button type="button" className="nav" data-ui-click="nav-toggle" onClick={handleNavToggle}>
             {isNavOpen ? "메뉴 닫기" : "메뉴 열기"}
           </button>
         </span>

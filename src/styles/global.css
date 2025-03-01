@@ -478,25 +478,25 @@ i.ic {
 	background-size: auto 100%;
 }
 i.ic.download {
-	background-image: url(../images/ic_download.svg);
+	background-image: url(/file.svg);
 }
 i.ic.write {
-	background-image: url(../images/ic_write.svg);
+	background-image: url(/write.svg);
 }
 i.ic.talk {
-	background-image: url(../images/ic_talk.svg);
+	background-image: url(/talk.svg);
 }
 i.ic.process-1 {
-	background-image: url(../images/ic_process01.svg);
+	background-image: url(/ic.svg);
 }
 i.ic.process-2 {
-	background-image: url(../images/ic_process02.svg);
+	background-image: url(/setting.svg);
 }
 i.ic.process-3 {
-	background-image: url(../images/ic_process03.svg);
+	background-image: url(/user.svg);
 }
 i.ic.process-4 {
-	background-image: url(../images/ic_process04.svg);
+	background-image: url(/car.svg);
 }
 i.ic.process-5 {
 	background-image: url(../images/ic_process05.svg);
