@@ -1,5 +1,20 @@
 
+---------------------------------------
 #######################################
+실행
+
+--npm, pnpm, yarn
+1. npm install, pnpm install, yarn install
+
+
+2. pnpm dev   --클라이언트 실행   (http:localhost:5173/FAQ   --클라이언트)
+3. pnpm run server  -- 서버 실행  (http:localhost:5000      -- 서버)
+ 
+
+
+#######################################
+초기 세팅 설정시 진행과정
+
 1. pnpm 설치 
 2. pnpm create vite@latest my-vite-app --template react-ts  (typescript)
 3. pnpm install
@@ -9,15 +24,6 @@
 7. package.json 에 server 추가 작업
 8. json-server 실행   pnpm run server
 9. 클라이언트 실행 pnpm dev
-
----------------------------------------
-#######################################
-실행
-
-1. pnpm dev   --클라이언트 실행   (http:localhost:5173/FAQ   --클라이언트)
-2. pnpm run server  -- 서버 실행  (http:localhost:5000      -- 서버)
- 
-
 
 
 
