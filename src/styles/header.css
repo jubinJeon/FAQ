@@ -1,71 +1,169 @@
 header {
-    background-color: #fff;
-    padding: 0 var(--side-padding);
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .inner {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    height: var(--header-height);
-    margin: 0 auto;
-    max-width: 1660px;
-    max-width: var(--max-width);
-    
-      .a {
-        color: var(--midnight-900);
-        text-decoration: none;
-      }
-  }
-  
-  .logo {
-    height: 100%;
-    width: 160px;
-    background-position: 0 50%;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    font-size: 0;
-  }
-
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-  
-  nav ul li {
-    margin: 0 10px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #555;
-    font-size: 1rem;
-  }
-  
-  nav ul li a.active {
-    color: #007bff;
-    font-weight: bold;
-  }
-  
-  .util button.nav {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    nav {
-      display: none;
-    }
-    nav.open {
-      display: block;
-    }
-  }
+	z-index: 100;
+	position: sticky;
+	top: 0;
+	padding: 0 var(--side-padding);
+	background-color: #fff;
+}
+header > .inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	max-width: var(--max-width);
+	height: var(--header-height);
+	margin: 0 auto;
+}
+.is-pinned + header {
+	box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.08);
+}
+header .logo {
+	font-size: 0;
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	background-size: 100% auto;
+}
+@media (max-width: 1023px) {
+	header .logo {
+		width: 120px;
+		height: 40px;
+		background-image: url(/img/logo.svg);
+	}
+	header nav {
+		position: fixed;
+		top: var(--header-height);
+		bottom: 0;
+		left: -100%;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin-left: 0;
+		padding: 0 var(--side-padding);
+		background-color: #fff;
+		transition: margin-left 0.8s var(--cubic-bezier-primary);
+	}
+	.nav-opened header nav {
+		margin-left: 100%;
+	}
+	header nav > ul {
+		margin-top: 80px;
+	}
+	header nav > ul > li > a {
+		display: block;
+		margin-bottom: 8px;
+		text-align: center;
+		font-size: 24px;
+		line-height: 56px;
+		font-weight: 600;
+		color: #000;
+	}
+	header nav > ul > li.active > a {
+		color: var(--mint-900);
+	}
+	header .util {
+		flex: 1;
+		display: flex;
+		justify-content: flex-end;
+		margin-right: -8px;
+	}
+	header .util button {
+		width: 40px;
+		height: 40px;
+		font-size: 0;
+	}
+	header button.nav {
+		position: relative;
+		display: inline-block;
+		background-image: linear-gradient(transparent 9px, #000 9px, #000 11px, transparent 11px);
+		background-repeat: no-repeat;
+		background-position: 0;
+		border: 10px solid transparent;
+		transition: background-position 0.4s var(--cubic-bezier-primary);
+	}
+	.nav-opened header button.nav {
+		background-position: 30px 0;
+	}
+	header button.nav:before,
+	header button.nav:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #000;
+		transform-origin: 50%;
+		transition: transform 0.6s var(--cubic-bezier-primary);
+	}
+	header button.nav:before {
+		top: 3px;
+	}
+	header button.nav:after {
+		bottom: 3px;
+	}
+	.nav-opened header button.nav:before {
+		transform: translateY(6px) rotate(-45deg) scaleX(1.2);
+	}
+	.nav-opened header button.nav:after {
+		transform: translateY(-6px) rotate(45deg) scaleX(1.2);
+	}
+	@media (max-height: 463px) {
+		header nav {
+			justify-content: center;
+		}
+		header nav > ul {
+			margin-top: 0;
+		}
+		header nav > ul > li > a {
+			margin-bottom: 0;
+		}
+	}
+}
+@media (min-width: 1024px) {
+	header .logo {
+		width: 160px;
+		height: 100%;
+		background-image: url(/img/logo.svg);
+	}
+	header nav {
+		flex: 1;
+		margin-right: -20px;
+	}
+	header nav > ul {
+		display: flex;
+		justify-content: flex-end;
+	}
+	header nav > ul > li {
+		margin: 0 16px;
+	}
+	header nav > ul > li > a {
+		position: relative;
+		display: block;
+		padding: 0 4px;
+		font-size: 18px;
+		line-height: var(--header-height);
+		font-weight: 600;
+		color: #000;
+	}
+	header nav > ul > li > a:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 0;
+		height: 4px;
+		background-color: var(--mint-900);
+		opacity: 0.4;
+		transition: width 0.4s var(--cubic-bezier-primary);
+	}
+	header nav > ul > li.active > a:after {
+		width: 100%;
+		opacity: 1;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		header nav > ul > li > a:hover:after {
+			width: 100%;
+		}
+	}
+	header .util {
+		display: none;
+	}
+}

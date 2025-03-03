@@ -1,0 +1,136 @@
+footer {
+	position: relative;
+	padding: 0 var(--side-padding);
+	color: var(--gray-400);
+	background-color: var(--midnight-900);
+}
+@media (max-width: 743px) {
+	footer {
+		--font-md: 12px;
+		--font-lg: 14px;
+		--line-height: 22px;
+	}
+}
+@media (min-width: 744px) {
+	footer {
+		--font-md: 14px;
+		--font-lg: 16px;
+		--line-height: 24px;
+	}
+}
+footer > .inner {
+	display: flex;
+	justify-content: space-between;
+	max-width: var(--max-width);
+	height: var(--footer-height);
+	margin: 0 auto;
+	font-size: var(--font-md);
+	line-height: var(--line-height);
+}
+footer .util {
+	display: flex;
+}
+footer .util button {
+	font-size: var(--font-lg);
+	color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+	footer .util button:hover {
+		text-decoration: underline;
+	}
+}
+footer address span {
+	display: inline-flex;
+}
+footer address span > em {
+	margin-left: 12px;
+}
+footer address span > i,
+footer address span > a {
+	margin-left: 4px;
+}
+footer address span > a {
+	color: inherit;
+	text-decoration: underline;
+}
+footer .copyright:before {
+	content: '';
+	display: block;
+	background-image: url(/img/KIAlog.svg);
+	background-repeat: no-repeat;
+	background-size: auto 100%;  
+}
+@media (max-width: 743px) {
+	footer > .inner {
+		flex-direction: column;
+		padding-top: 18px;
+		padding-bottom: 29px;
+	}
+	footer .util button {
+		margin-right: 16px;
+		line-height: 48px;
+	}
+	footer address span {
+		margin-right: 12px;
+	}
+	footer address br:nth-of-type(5) {
+		display: none;
+	}
+	footer .copyright:before {
+		height: 32px;
+		margin-bottom: 1px;
+	}
+}
+@media (min-width: 744px) and (max-width: 1023px) {
+	footer > .inner {
+		flex-direction: column;
+		padding-top: 34px;
+		padding-bottom: 44px;
+	}
+	footer .util button {
+		margin-right: 24px;
+		line-height: 52px;
+	}
+	footer address span {
+		margin-right: 12px;
+	}
+	footer address br:nth-of-type(1),
+	footer address br:nth-of-type(3),
+	footer address br:nth-of-type(5) {
+		display: none;
+	}
+	footer .copyright:before {
+		height: 48px;
+	}
+}
+@media (min-width: 1024px) {
+	footer > .inner {
+		flex-direction: row-reverse;
+		align-items: center;
+	}
+	footer .util {
+		justify-content: flex-end;
+		margin-bottom: 10px;
+	}
+	footer .util button {
+		margin-left: 24px;
+		line-height: var(--line-height);
+	}
+	footer address {
+		text-align: right;
+	}
+	footer address span {
+		margin-left: 12px;
+	}
+	footer address br:nth-of-type(1),
+	footer address br:nth-of-type(2),
+	footer address br:nth-of-type(3),
+	footer address br:nth-of-type(4),
+	footer address br:nth-of-type(5) {
+		display: none;
+	}
+	footer .copyright:before {
+		height: 56px;
+		margin-bottom: 2px;
+	}
+}

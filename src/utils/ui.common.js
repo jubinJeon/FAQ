@@ -10,6 +10,8 @@
 	const NAME_SHOWED = 'show'
 	const NAME_TRANSITION = 'ing'
 	let WINDOW_SCROLLABLE = true
+
+
 	/* UI_LISTENERS ************************************************************ */
 	const UI_LISTENERS = {
 		touchmove(e) {
@@ -128,6 +130,9 @@
 	window.addEventListener('keydown', function (e) {
 		if (document.body.classList.contains('main') && e.code === 'Tab') e.preventDefault()
 	})
+
+
+
 	/* UI_ACTIONS ************************************************************ */
 	const UI_ACTIONS = {
 		navToggle(e) {
@@ -519,6 +524,8 @@
 			sections.container.dataset.uiCurrent = current
 		}
 	}
+
+	
 	/* Dropdown ************************************************************ */
 	function initDropdown(item) {
 		if (!item.target) item.target = item.querySelector(ATTR_TARGET)

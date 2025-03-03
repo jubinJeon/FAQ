@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useCategories, useCategoryList } from "../hook/useQuerys";
-import Etc from './etc'
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { fechAddViewCount } from '../utils/api'
 
+
+import Etc from './etc'
+import '../styles/content.css'
+
+// ######################################### enum, interface #######################################
 
 // tab 제목
 enum TabEnum {
@@ -55,7 +61,17 @@ const processSteps: TabType[]  = [
 ];
 
 
-const FAQ: React.FC = () => {
+
+
+
+// ######################################### FAQ ####################################### 
+
+
+const FAQ: React.FC =() => {
+
+  const queryClient = useQueryClient();
+
+
   const [searchQuery, setSearchQuery] = useState<string>(""); // 검색어 상태
 
   const [selectedTab, setSelectedTab] = useState<string>(tabTypeList[0].type); // 현재 선택된 탭 (초기 타입)
@@ -66,10 +82,9 @@ const FAQ: React.FC = () => {
 
   const [openIndex, setOpenIndex] = useState<number | null>(null); // 아코디언 토글
 
+  
 
-
-  // const { data: faqs, error, isLoading } = useFAQs();
-
+  //##################################################################### DATA 
 
   // 중간 tab 제목
   const tabTitleList : TabType[] = [
@@ -78,6 +93,15 @@ const FAQ: React.FC = () => {
 
   // FAQ 데이터 (실제 API 연결 가능)
   const faqData: FAQItemType[] = [...(categoryItemList?.items || [])];
+
+
+
+
+
+
+
+  //##################################################################### 함수 
+
 
   // 검색 필터링
   const filteredFAQs = faqData.filter((faq) => {
@@ -89,12 +113,47 @@ const FAQ: React.FC = () => {
 
 
 
+// useMutation 훅을 사용하여 POST 요청 처리
+const mutation = useMutation({
+  mutationFn: fechAddViewCount,    // addViewCount를 mutationFn에 전달
+  onSuccess: (data) => {
+    console.log('View count added successfully:', data);
+    // 성공 시 처리 (예: UI 업데이트, 쿼리 리프레시 등)
+
+    // 캐시처리도 가능 
+    queryClient.invalidateQueries(['categoryList']);
+  },
+  onError: (error: Error) => {
+    console.error('Error adding view count:', error.message);
+    // 오류 발생 시 처리
+  },
+});
+
+
+
+  //##################################################################### 이벤트 
+
+
   // 클릭 이벤트
   const tabHandleClickEvent = (type : string) => {
     // // 선택 바꿈
     setSelectedTab(type);
   };
 
+
+  // 상세 클릭 이벤트
+  const itemDetailClickEvent = (index : number) => {
+    setOpenIndex(openIndex === null ? openIndex : index);
+    mutation.mutate();
+  }
+
+
+
+
+
+
+
+  //##################################################################### useEffect 
 
   // 선택함수가 바뀐후 API돌리기 
   useEffect(() => {
@@ -112,6 +171,14 @@ const FAQ: React.FC = () => {
     // 아코디언 초기화
     setOpenIndex(null);
   }, [filter]);
+
+
+
+
+
+
+
+  //##################################################################### render 
 
   return (
     <div className="content">
@@ -185,18 +252,17 @@ const FAQ: React.FC = () => {
                         <button
                           type="button"
                           data-ui-click="dropdown-toggle"
-                          onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                          onClick={() =>itemDetailClickEvent(index) }
                         >
                           <em>{faq.categoryName}</em>
                           <strong>{faq.question}</strong>
                         </button>
                       </h4>
+                      
                       {/* 05. 상세 리스트 */}
-                      {openIndex === index && (
-                        <div className="q" data-ui-target="true">
-                          <div className="inner"dangerouslySetInnerHTML={{ __html: faq.answer }}/>
-                        </div>
-                      )}
+                      <div className="q" data-ui-target="true">
+                        <div className="inner"dangerouslySetInnerHTML={{ __html: faq.answer }}/>
+                      </div>
                     </li>
                 ))}
         </ul>

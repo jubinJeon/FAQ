@@ -1,0 +1,98 @@
+.container {
+	min-height: calc(100vh - var(--header-height) - var(--footer-height));
+	overflow: hidden;
+	padding: 0 var(--side-padding) var(--bottom-padding);
+}
+.container .content {
+	max-width: 1240px;
+	margin: 0 auto;
+}
+.container .content.reduced {
+	max-width: 816px;
+}
+.quick-util {
+	z-index: 99;
+	position: sticky;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	pointer-events: none;
+}
+.quick-util > .inner {
+	position: absolute;
+	right: 32px;
+	bottom: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	--size: 56px;
+	width: var(--size);
+	transform: scale3d(1);
+	transform-origin: 100% 100%;
+}
+.quick-util > .inner > button {
+	position: relative;
+	pointer-events: all;
+	width: var(--size);
+	height: var(--size);
+	margin-top: 8px;
+	font-size: 0;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 28px;
+	border-radius: 50%;
+	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+	opacity: 1;
+	transition-property: width, height, margin, background-position, opacity;
+	transition-duration: 0.4s;
+	transition-timing-function: var(--cubic-bezier-primary);
+}
+.quick-util > .inner > button:active {
+	background-position: 50% 60%;
+	transition: all 0s;
+}
+.quick-util > .inner > button.share {
+	background-image: url(../images/ic_share.svg);
+}
+.quick-util > .inner > button.top {
+	background-image: url(../images/ic_top.svg);
+}
+body:not(.main) .quick-util:not(.active) > .inner > button.top,
+body.main .container[data-ui-current='0'] ~ .quick-util > .inner > button.top,
+body.main .container:not([data-ui-current]) ~ .quick-util > .inner > button.top {
+	width: 0;
+	height: 0;
+	margin: 0;
+	background-position: 50% 100%;
+	opacity: 0;
+	transition-property: width, height, margin, background-position, opacity;
+	transition-duration: 0.4s;
+	transition-timing-function: var(--cubic-bezier-primary);
+}
+@media (max-width: 743px) {
+	.quick-util > .inner {
+		right: 16px;
+		bottom: 24px;
+		--size: 40px;
+	}
+	.quick-util > .inner > button {
+		background-size: 20px;
+	}
+}
+@media (min-width: 744px) and (max-width: 1023px) {
+	.quick-util > .inner {
+		right: 24px;
+		bottom: 32px;
+		--size: 48px;
+	}
+	.quick-util > .inner > button {
+		background-size: 24px;
+	}
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+	.quick-util > .inner {
+		right: 24px;
+		bottom: 32px;
+	}
+}

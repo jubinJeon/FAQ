@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logoImg from "../styles/logo.svg"    // 로고 이미지
+import '../styles/header.css'
 
 const Header: React.FC = () => {
 
